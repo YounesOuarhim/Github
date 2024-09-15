@@ -110,7 +110,7 @@ class HierarchicalLoss(nn.Module):
         return binary_vector_labels
     # Initial syntax
 
-    '''def convert_logits_to_class_preds(self, logits):
+    """def convert_logits_to_class_preds(self, logits):
         #Convert nn outputs (logits) to class probabilities (leafs space - no parent classes)
         batch_size = logits.size(0)
         batch_preds = []
@@ -123,7 +123,7 @@ class HierarchicalLoss(nn.Module):
                     product *= probas[self.parent_list[ancestor_idx]][ancestor_idx] 
                 preds.append(product)
             batch_preds.append(torch.tensor(preds))
-        return torch.stack(batch_preds)'''
+        return torch.stack(batch_preds)"""
     
     # Optimzed syntax
 
@@ -231,7 +231,7 @@ class HierarchicalLossConvex(nn.Module):
             raise ValueError("The number of outputs from the model is incorrect to compute the loss given the hierarchical configuration you provided.")
         
         probas = torch.zeros((self.nb_h_classes, self.nb_h_classes), dtype=nn_outputs.dtype, device=nn_outputs.device)
-        start_idx = 0 # changement: on ne clone plus les sorties du modèle mais on défini un indice de départ
+        start_idx = 0 # change: we no longer clone the outputs of the model but define a starting index
         for parent_idx, children in enumerate(self.childrens_list):
             if children:
                 nb_children = len(children)
